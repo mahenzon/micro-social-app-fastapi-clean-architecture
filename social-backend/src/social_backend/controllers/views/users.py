@@ -3,11 +3,15 @@ from uuid import UUID
 
 from dishka import FromDishka
 from dishka.integrations.fastapi import DishkaRoute
-from fastapi import APIRouter, Path, HTTPException
+from fastapi import APIRouter, Path, HTTPException, Depends
 from starlette import status
 
-from social_backend.application.interactors import GetUserInteractor
-from social_backend.controllers.schemas import UserRead
+from social_backend.application.dto import NewUser
+from social_backend.application.interactors import (
+    GetUserInteractor,
+    CreateUserInteractor,
+)
+from social_backend.controllers.schemas import UserRead, UserCreate
 from social_backend.domain import User
 
 router = APIRouter(
@@ -36,3 +40,22 @@ async def get_user_by_id(
         status_code=status.HTTP_404_NOT_FOUND,
         detail=f"User {user_id} not found.",
     )
+
+
+def new_user_dep(
+    user_create: UserCreate,
+) -> NewUser:
+    return NewUser(
+        username=user_create.username,
+    )
+
+
+@router.post(
+    "/",
+    response_model=UserRead,
+)
+async def create_user_view(
+    new_user: Annotated[NewUser, Depends(new_user_dep)],
+    create_user: FromDishka[CreateUserInteractor],
+) -> User:
+    return await create_user(new_user)
