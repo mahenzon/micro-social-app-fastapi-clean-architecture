@@ -1,0 +1,19 @@
+version = 1
+revision = 3
+requires-python = ">=3.14"
+
+[manifest]
+members = [
+    "micro-social-app",
+    "social-backend",
+]
+
+[[package]]
+name = "micro-social-app"
+version = "0.1.0"
+source = { virtual = "." }
+
+[[package]]
+name = "social-backend"
+version = "0.1.0"
+source = { editable = "social-backend" }
