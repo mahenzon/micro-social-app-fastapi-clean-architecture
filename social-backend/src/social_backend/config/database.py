@@ -13,7 +13,7 @@ class SQLAlchemyConfig(BaseModel):
     @property
     def connect_args(self) -> dict[str, Any]:
         return {
-            "connect_timeout": self.connect_timeout,
+            # "connect_timeout": self.connect_timeout,
         }
 
 
