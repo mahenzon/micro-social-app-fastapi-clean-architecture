@@ -27,6 +27,6 @@ class User(Base):
                 func.length(username) >= 3,
                 func.length(username) <= 32,
             ),
-            name="name_length",
+            name="username_length",
         ),
     )
