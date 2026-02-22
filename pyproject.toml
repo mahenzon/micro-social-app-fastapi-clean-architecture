@@ -13,3 +13,8 @@ members = [
 
 [tool.uv.sources]
 social-backend = { workspace = true }
+
+[dependency-groups]
+dev = [
+    "black>=26.1.0",
+]
