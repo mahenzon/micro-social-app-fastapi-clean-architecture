@@ -8,6 +8,8 @@ from .base import Base
 
 
 class User(Base):
+    __tablename__ = "users"
+
     id: Mapped[uuid.UUID] = mapped_column(
         UUID(as_uuid=True),
         primary_key=True,
