@@ -1,7 +1,7 @@
 from typing import Protocol
 from uuid import UUID
 
-from social_backend.domain import User
+from social_backend.domain import User, UserID
 
 
 class UserSaver(Protocol):
@@ -9,4 +9,4 @@ class UserSaver(Protocol):
 
 
 class UserReader(Protocol):
-    async def read_by_uuid(self, uuid: UUID) -> User | None: ...
+    async def read_by_uuid(self, uuid: UserID) -> User | None: ...

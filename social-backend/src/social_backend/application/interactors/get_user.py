@@ -1,7 +1,5 @@
-from uuid import UUID
-
 from social_backend.application.interfaces import UserReader
-from social_backend.domain import User
+from social_backend.domain import User, UserID
 
 
 class GetUserInteractor:
@@ -11,5 +9,5 @@ class GetUserInteractor:
     ) -> None:
         self._reader = reader
 
-    async def __call__(self, uuid: UUID) -> User | None:
+    async def __call__(self, uuid: UserID) -> User | None:
         return await self._reader.read_by_uuid(uuid)
