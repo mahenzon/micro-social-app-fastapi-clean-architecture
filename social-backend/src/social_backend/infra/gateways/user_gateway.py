@@ -22,7 +22,8 @@ class UserGateway(
             return None
         return User.model_validate(user)
 
-    async def save(self, user: User) -> None:
+    async def save(self, user: User) -> UserID:
         user_model = models.User(**user.model_dump())
         self._session.add(user_model)
         await self._session.commit()
+        return user_model.id

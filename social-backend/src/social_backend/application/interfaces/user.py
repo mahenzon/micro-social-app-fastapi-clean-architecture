@@ -4,7 +4,7 @@ from social_backend.domain import User, UserID
 
 
 class UserSaver(Protocol):
-    async def save(self, user: User) -> None: ...
+    async def save(self, user: User) -> UserID: ...
 
 
 class UserReader(Protocol):
