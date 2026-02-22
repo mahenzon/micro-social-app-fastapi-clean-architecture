@@ -21,6 +21,7 @@ class PostgresConfig(BaseModel):
     name: str = "social_app"
     host: str = "localhost"
     port: int = 5432
+    schema_name: str = "social_backend"
     user: str = "app"
     password: SecretStr
 
