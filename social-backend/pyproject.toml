@@ -7,7 +7,14 @@ authors = [
     { name = "Suren Khorenyan", email = "surenkhorenyan@gmail.com" }
 ]
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "asyncpg>=0.31.0",
+    "fastapi[standard]>=0.129.2",
+    "pydantic>=2.12.5",
+    "pydantic-settings>=2.13.1",
+    "sqlalchemy[asyncio]>=2.0.46",
+    "uvicorn>=0.41.0",
+]
 
 [project.scripts]
 social-backend = "social_backend:main"
