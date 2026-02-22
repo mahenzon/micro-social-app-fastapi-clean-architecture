@@ -17,4 +17,32 @@ social-backend = { workspace = true }
 [dependency-groups]
 dev = [
     "black>=26.1.0",
+    "mypy>=1.19.1",
 ]
+
+
+[tool.mypy]
+# Включает все проверки --strict
+strict = true
+
+# Подключаем плагин Pydantic
+plugins = [
+    "pydantic.mypy",
+]
+
+# Улучшаем читаемость вывода (опционально)
+pretty = true
+show_error_codes = true
+
+[tool.pydantic-mypy]
+# Проверять типы в __init__ (без этого аргументы будут Any)
+init_typed = true
+
+# Выдавать ошибку за лишние аргументы в __init__, даже если в модели нет extra="forbid"
+init_forbid_extra = true
+
+# Ругаться на использование полей без аннотации типа
+warn_untyped_fields = true
+
+# Проверять динамические алиасы (если используются)
+warn_required_dynamic_aliases = true

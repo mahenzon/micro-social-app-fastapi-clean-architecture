@@ -36,7 +36,6 @@ class Settings(BaseSettings):
     app: AppConfig = AppConfig()
     logging: LoggingConfig = LoggingConfig()
     db: DatabaseConfig
-    http: HttpConfig = HttpConfig()
 
     @classmethod
     def settings_customise_sources(
@@ -62,12 +61,3 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
-
-
-# just for demo
-if __name__ == "__main__":
-    print(settings)
-    print(settings.model_dump_json(indent=2))
-    print("db password:", settings.db.password.get_secret_value())
-    print("db url", settings.db.async_url)
-    print("db url", settings.db.async_url.render_as_string(hide_password=False))
