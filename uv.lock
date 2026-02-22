@@ -372,6 +372,12 @@ wheels = [
 name = "micro-social-app"
 version = "0.1.0"
 source = { virtual = "." }
+dependencies = [
+    { name = "social-backend" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "social-backend", editable = "social-backend" }]
 
 [[package]]
 name = "pydantic"
