@@ -11,7 +11,6 @@ from social_backend.config.app import AppConfig
 from social_backend.config.database import DatabaseConfig
 from social_backend.config.logging import LoggingConfig
 
-
 CONFIG_DIR = Path(__file__).resolve().parent
 ENVS_DIR = CONFIG_DIR / "envs"
 YAML_DIR = CONFIG_DIR / "yaml"
