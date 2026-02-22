@@ -138,6 +138,15 @@ wheels = [
 ]
 
 [[package]]
+name = "dishka"
+version = "1.8.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/96/9f/4445637e0543242ea8733f894910f83d2d402ff6aca0b0b41fcdd83290c7/dishka-1.8.0.tar.gz", hash = "sha256:15bad7d0a671b547a81e59188769d8b676918404f349b70664225574e4f27701", size = 268984, upload-time = "2026-02-11T11:05:11.567Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/0a/99/5540e68c60e96901cd439484c19826f01dbc718b48c8817e73602f3959f2/dishka-1.8.0-py3-none-any.whl", hash = "sha256:7f7bbc6c973ca1c8d8010c3a4feb4d1cafc0e600990e2e9cea6704a120bba1dd", size = 111517, upload-time = "2026-02-11T11:05:13.198Z" },
+]
+
+[[package]]
 name = "distlib"
 version = "0.4.0"
 source = { registry = "https://pypi.org/simple" }
@@ -845,6 +854,7 @@ source = { editable = "social-backend" }
 dependencies = [
     { name = "alembic" },
     { name = "asyncpg" },
+    { name = "dishka" },
     { name = "fastapi", extra = ["standard"] },
     { name = "pydantic" },
     { name = "pydantic-settings" },
@@ -856,6 +866,7 @@ dependencies = [
 requires-dist = [
     { name = "alembic", specifier = ">=1.18.4" },
     { name = "asyncpg", specifier = ">=0.31.0" },
+    { name = "dishka", specifier = ">=1.8.0" },
     { name = "fastapi", extras = ["standard"], specifier = ">=0.129.2" },
     { name = "pydantic", specifier = ">=2.12.5" },
     { name = "pydantic-settings", specifier = ">=2.13.1" },
