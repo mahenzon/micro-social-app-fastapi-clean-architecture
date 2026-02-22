@@ -20,12 +20,6 @@ class CreateUserInteractor:
 
     async def __call__(self, dto: NewUser) -> UserID:
         uuid = self._uuid_generator()
-        book = User(
-            id=uuid,
-            username=dto.username,
-        )
-        # мне не нравится, что в saver происходит session.add
-        # а тут снаружи мы делаем session.commit
-        await self._saver.save(book)
-        await self._db_session.commit()
+        user = User.model_validate(dto)
+        await self._saver.save(user)
         return uuid

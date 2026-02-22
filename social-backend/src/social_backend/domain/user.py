@@ -1,11 +1,10 @@
-from dataclasses import dataclass
 from typing import TypeAlias
 from uuid import UUID
+from pydantic import BaseModel
 
 UserID: TypeAlias = UUID
 
 
-@dataclass(slots=True)
-class User:
+class User(BaseModel):
     id: UserID
     username: str
