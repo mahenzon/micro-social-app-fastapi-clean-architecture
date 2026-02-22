@@ -7,7 +7,7 @@ from social_backend.application.dto import NewUser
 from social_backend.domain import User, UserID
 
 
-class CreateUserService:
+class CreateUserInteractor:
     def __init__(
         self,
         db_session: DBSessionAsync,

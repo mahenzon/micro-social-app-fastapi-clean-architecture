@@ -4,7 +4,7 @@ from social_backend.application.interfaces import UserReader
 from social_backend.domain import User
 
 
-class GetUserService:
+class GetUserInteractor:
     def __init__(
         self,
         reader: UserReader,
