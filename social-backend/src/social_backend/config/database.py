@@ -1,3 +1,5 @@
+from typing import Any
+
 from pydantic import BaseModel, SecretStr
 from sqlalchemy import URL
 
@@ -6,6 +8,13 @@ class SQLAlchemyConfig(BaseModel):
     pool_size: int = 20
     max_overflow: int = 5
     echo: bool = False
+    connect_timeout: int = 5
+
+    @property
+    def connect_args(self) -> dict[str, Any]:
+        return {
+            "connect_timeout": self.connect_timeout,
+        }
 
 
 class PostgresConfig(BaseModel):
