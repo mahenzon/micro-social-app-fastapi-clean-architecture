@@ -1,10 +1,10 @@
 from typing import Protocol
 
-from social_backend.domain import User, UserID
+from social_backend.domain import User, UserCreate, UserID
 
 
 class UserSaver(Protocol):
-    async def save(self, user: User) -> UserID: ...
+    async def save(self, user_create: UserCreate) -> User: ...
 
 
 class UserReader(Protocol):
