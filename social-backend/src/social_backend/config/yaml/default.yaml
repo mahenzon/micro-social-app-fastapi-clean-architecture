@@ -1,0 +1,3 @@
+social-backend:
+  logging:
+    level: INFO
