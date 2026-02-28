@@ -3,7 +3,7 @@ from dishka import make_async_container
 from dishka.integrations.fastapi import setup_dishka
 
 from social_backend.config import settings
-from social_backend.controllers.views import router
+from social_backend.controllers.api import router as api_router
 from social_backend.ioc import AppProvider
 
 container = make_async_container(AppProvider())
@@ -14,7 +14,7 @@ def get_fastapi_app() -> FastAPI:
         title=settings.app.title,
     )
 
-    fastapi_app.include_router(router)
+    fastapi_app.include_router(api_router)
 
     setup_dishka(container, fastapi_app)
 
