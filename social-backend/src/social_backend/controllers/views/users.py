@@ -53,6 +53,7 @@ def new_user_dep(
 @router.post(
     "/",
     response_model=UserRead,
+    status_code=status.HTTP_201_CREATED,
 )
 async def create_user_view(
     new_user: Annotated[NewUser, Depends(new_user_dep)],

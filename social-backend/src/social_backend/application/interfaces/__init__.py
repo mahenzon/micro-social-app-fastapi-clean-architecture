@@ -3,8 +3,8 @@ __all__ = (
     "UUIDGenerator",
     "UserSaver",
     "UserReader",
-    "DBSessionSync",
-    "DBSessionAsync",
+    "TransactionManagerAsync",
+    "TransactionManagerSync",
 )
 
 from .uuid_generator import UUIDGenerator
@@ -12,7 +12,7 @@ from .user import (
     UserSaver,
     UserReader,
 )
-from .db_session import (
-    DBSessionSync,
-    DBSessionAsync,
+from .transaction_manager import (
+    TransactionManagerAsync,
+    TransactionManagerSync,
 )

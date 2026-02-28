@@ -1,21 +1,28 @@
 from social_backend.application.interfaces import (
-    DBSessionAsync,
+    TransactionManagerAsync,
     UserSaver,
+    UUIDGenerator,
 )
 from social_backend.application.dto import NewUser
-from social_backend.domain import User, UserCreate
+from social_backend.domain import User
 
 
 class CreateUserInteractor:
     def __init__(
         self,
-        db_session: DBSessionAsync,
+        trx_manager: TransactionManagerAsync,
         user_saver: UserSaver,
+        uuid_generator: UUIDGenerator,
     ) -> None:
-        self._db_session = db_session
+        self._trx_manager = trx_manager
         self._saver = user_saver
+        self._generate_uuid = uuid_generator
 
     async def __call__(self, dto: NewUser) -> User:
-        user_create = UserCreate.model_validate(dto)
-        new_user = await self._saver.save(user_create)
+        new_user = User(
+            id=self._generate_uuid(),
+            username=dto.username,
+        )
+        await self._saver.save(new_user)
+        await self._trx_manager.commit()
         return new_user

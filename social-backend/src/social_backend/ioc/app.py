@@ -1,3 +1,4 @@
+import uuid
 from collections.abc import AsyncGenerator
 
 from dishka import Provider, Scope, provide, AnyOf
@@ -7,7 +8,12 @@ from sqlalchemy.ext.asyncio import (
     AsyncEngine,
 )
 
-from social_backend.application import interfaces
+from social_backend.application.interfaces import (
+    TransactionManagerAsync,
+    UserSaver,
+    UserReader,
+    UUIDGenerator,
+)
 from social_backend.application.interactors import (
     GetUserInteractor,
     CreateUserInteractor,
@@ -18,6 +24,10 @@ from social_backend.infra.gateways import UserGateway
 
 
 class AppProvider(Provider):
+
+    @provide(scope=Scope.APP)
+    def get_uuid_generator(self) -> UUIDGenerator:
+        return uuid.uuid7
 
     @provide(scope=Scope.APP)
     async def get_engine(self) -> AsyncGenerator[AsyncEngine]:
@@ -39,7 +49,7 @@ class AppProvider(Provider):
     ) -> AsyncGenerator[
         AnyOf[
             AsyncSession,
-            interfaces.DBSessionAsync,
+            TransactionManagerAsync,
         ]
     ]:
         async with session_maker() as session:
@@ -49,8 +59,8 @@ class AppProvider(Provider):
         UserGateway,
         scope=Scope.REQUEST,
         provides=AnyOf[
-            interfaces.UserReader,
-            interfaces.UserSaver,
+            UserReader,
+            UserSaver,
         ],
     )
 

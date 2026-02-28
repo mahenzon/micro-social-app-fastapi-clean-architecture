@@ -1,8 +1,7 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 
-
 from social_backend.application.interfaces import UserReader, UserSaver
-from social_backend.domain import User, UserID, UserCreate
+from social_backend.domain import User, UserID
 from social_backend.infra import models
 
 
@@ -20,10 +19,14 @@ class UserGateway(
         user = await self._session.get(models.User, uuid)
         if user is None:
             return None
-        return User.model_validate(user)
+        return User(
+            id=user.id,
+            username=user.username,
+        )
 
-    async def save(self, user_create: UserCreate) -> User:
-        user_model = models.User(**user_create.model_dump())
+    async def save(self, user: User) -> None:
+        user_model = models.User(
+            id=user.id,
+            username=user.username,
+        )
         self._session.add(user_model)
-        await self._session.commit()
-        return User.model_validate(user_model)
