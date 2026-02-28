@@ -12,6 +12,7 @@ dependencies = [
     "asyncpg>=0.31.0",
     "dishka>=1.8.0",
     "fastapi[standard]>=0.129.2",
+    "faststream>=0.6.6",
     "pydantic>=2.12.5",
     "pydantic-settings>=2.13.1",
     "sqlalchemy[asyncio]>=2.0.46",
