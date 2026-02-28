@@ -12,10 +12,12 @@ from social_backend.application.interfaces import (
     TransactionManagerAsync,
     UserSaver,
     UserReader,
+    UsersReader,
     UUIDGenerator,
 )
 from social_backend.application.interactors import (
     GetUserInteractor,
+    GetUsersInteractor,
     CreateUserInteractor,
 )
 from social_backend.config import settings
@@ -61,11 +63,16 @@ class AppProvider(Provider):
         provides=AnyOf[
             UserReader,
             UserSaver,
+            UsersReader,
         ],
     )
 
     get_user_interactor = provide(
         GetUserInteractor,
+        scope=Scope.REQUEST,
+    )
+    get_users_interactor = provide(
+        GetUsersInteractor,
         scope=Scope.REQUEST,
     )
     create_new_user_interactor = provide(

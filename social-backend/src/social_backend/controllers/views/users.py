@@ -9,6 +9,7 @@ from starlette import status
 from social_backend.application.dto import NewUser
 from social_backend.application.interactors import (
     GetUserInteractor,
+    GetUsersInteractor,
     CreateUserInteractor,
 )
 from social_backend.controllers.schemas import UserRead, UserCreate
@@ -40,6 +41,16 @@ async def get_user_by_id(
         status_code=status.HTTP_404_NOT_FOUND,
         detail=f"User {user_id} not found.",
     )
+
+
+@router.get(
+    "/",
+    response_model=list[UserRead],
+)
+async def get_users_view(
+    get_users: FromDishka[GetUsersInteractor],
+) -> list[User]:
+    return await get_users()
 
 
 def new_user_dep(

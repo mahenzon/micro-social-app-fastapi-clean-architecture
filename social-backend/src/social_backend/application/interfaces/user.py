@@ -9,3 +9,7 @@ class UserSaver(Protocol):
 
 class UserReader(Protocol):
     async def read_by_uuid(self, uuid: UserID) -> User | None: ...
+
+
+class UsersReader(Protocol):
+    async def read(self) -> list[User]: ...
