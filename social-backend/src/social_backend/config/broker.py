@@ -3,7 +3,7 @@ from pydantic import BaseModel
 
 class RabbitConfig(BaseModel):
     host: str = "localhost"
-    port: int = 5372
+    port: int = 5672
     virtualhost: str = "/"
     username: str = "guest"
     password: str = "guest"
