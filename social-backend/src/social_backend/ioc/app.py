@@ -2,6 +2,7 @@ import uuid
 from collections.abc import AsyncGenerator
 
 from dishka import Provider, Scope, provide, AnyOf
+from faststream.rabbit import RabbitBroker
 from sqlalchemy.ext.asyncio import (
     AsyncSession,
     async_sessionmaker,
@@ -21,6 +22,7 @@ from social_backend.application.interactors import (
     CreateUserInteractor,
 )
 from social_backend.config import settings
+from social_backend.infra.broker import new_broker
 from social_backend.infra.db import new_session_maker, new_engine
 from social_backend.infra.gateways import UserGateway
 
@@ -30,6 +32,10 @@ class AppProvider(Provider):
     @provide(scope=Scope.APP)
     def get_uuid_generator(self) -> UUIDGenerator:
         return uuid.uuid7
+
+    @provide(scope=Scope.APP)
+    def get_broker(self) -> RabbitBroker:
+        return new_broker(settings.broker.rabbit)
 
     @provide(scope=Scope.APP)
     async def get_engine(self) -> AsyncGenerator[AsyncEngine]:
