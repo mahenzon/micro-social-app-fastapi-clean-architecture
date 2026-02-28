@@ -8,6 +8,7 @@ from pydantic_settings import (
 )
 
 from social_backend.config.app import AppConfig
+from social_backend.config.broker import BrokerConfig
 from social_backend.config.database import DatabaseConfig
 from social_backend.config.logging import LoggingConfig
 
@@ -35,6 +36,7 @@ class Settings(BaseSettings):
     app: AppConfig = AppConfig()
     logging: LoggingConfig = LoggingConfig()
     db: DatabaseConfig
+    broker: BrokerConfig
 
     @classmethod
     def settings_customise_sources(
