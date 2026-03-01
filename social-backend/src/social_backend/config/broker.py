@@ -10,4 +10,4 @@ class RabbitConfig(BaseModel):
 
 
 class BrokerConfig(BaseModel):
-    rabbit: RabbitConfig
+    rabbit: RabbitConfig = RabbitConfig()

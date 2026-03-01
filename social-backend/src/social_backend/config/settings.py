@@ -36,7 +36,7 @@ class Settings(BaseSettings):
     app: AppConfig = AppConfig()
     logging: LoggingConfig = LoggingConfig()
     db: DatabaseConfig
-    broker: BrokerConfig
+    broker: BrokerConfig = BrokerConfig()
 
     @classmethod
     def settings_customise_sources(
