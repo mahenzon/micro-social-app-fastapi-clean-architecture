@@ -1,4 +1,4 @@
-from dishka import FromDishka
+from dishka.integrations.faststream import FromDishka
 from faststream.rabbit import RabbitRouter
 
 from social_backend.application.dto import NewUser
