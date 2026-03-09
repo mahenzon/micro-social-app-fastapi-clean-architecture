@@ -1,8 +1,7 @@
-from typing import TypeAlias
 from uuid import UUID
 from dataclasses import dataclass
 
-UserID: TypeAlias = UUID
+type UserID = UUID
 
 
 @dataclass(frozen=True, slots=True)
