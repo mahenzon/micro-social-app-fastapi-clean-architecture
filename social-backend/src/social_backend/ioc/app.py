@@ -2,7 +2,6 @@ import uuid
 from collections.abc import AsyncGenerator
 
 from dishka import Provider, Scope, provide, AnyOf
-from faststream.rabbit import RabbitBroker
 from sqlalchemy.ext.asyncio import (
     AsyncSession,
     async_sessionmaker,
